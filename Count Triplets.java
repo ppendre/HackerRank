@@ -1,3 +1,5 @@
+//	Problem description :  https://www.hackerrank.com/challenges/count-triplets-1
+
 import java.io.*;
 import java.math.*;
 import java.security.*;
