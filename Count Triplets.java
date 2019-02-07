@@ -1,4 +1,15 @@
-//	Problem description :  https://www.hackerrank.com/challenges/count-triplets-1
+/*	Problem description :  https://www.hackerrank.com/challenges/count-triplets-1
+ *
+ *	Time complexity: O(n * log(n))
+ *	
+ *	Environment: www.hackerrank.com - Java 8
+ *	
+ * 	To use outside HackerRank please modify 
+ * 	BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));   line to
+ 	BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+ */	
+
+
 
 import java.io.*;
 import java.math.*;
@@ -40,7 +51,7 @@ public class Solution {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] nr = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
 
