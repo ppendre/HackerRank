@@ -1,7 +1,17 @@
-//	Problem description :  https://www.hackerrank.com/challenges/frequency-queries/
-
-// 	The original storing process was modified, because of fastest code
-
+/*	Problem description :  https://www.hackerrank.com/challenges/frequency-queries/
+ *
+ * 	The original storing process was modified, because of fastest code
+ *	
+ *	Time complexity: 					O(log(n))
+ *						queries: 		O(log(n))
+ *						add & delete : 	O(log(n))
+ *	
+ *	Environment: www.hackerrank.com - Java 8
+ *	
+ * 	To use outside HackerRank please modify 
+ * 	BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));   line to
+ 	BufferedWriter(new OutputStreamWriter(System.out));
+ */	
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -66,7 +76,7 @@ public class Solution {
             }
           }
           List<Integer> ans = freqQuery(queries);
-          try (BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out))) {
+          try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH"))) {
             bufferedWriter.write(
                     ans.stream()
                             .map(Object::toString)
