@@ -1,6 +1,6 @@
  /* Problem description :  https://www.hackerrank.com/challenges/luck-balance
   * 
-  *	Time complexity: O(n)
+  *	Time complexity: O( n * log(n) )
   *	
   *	Environment: www.hackerrank.com - Java 8
   *	
