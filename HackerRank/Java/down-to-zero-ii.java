@@ -17,8 +17,10 @@ import java.util.*;
 public class Solution {
 
     	//Dynamic programming lookUp table for storing previous results
-	static ArrayList<Integer> lookUp = new ArrayList<>();
-    static { lookUp.add(0); }
+    static ArrayList<Integer> lookUp = new ArrayList<>();
+    static { 
+	lookUp.add(0); 
+    }
 
     static int downToZero(int n) {
         	// if it was computed previously -> DONE
@@ -28,10 +30,9 @@ public class Solution {
         	// Check its divisors and select that serves the minimum steps
         for(int i = lookUp.size(); i <= n; i++) {
             int minStep = lookUp.get(i - 1) + 1;
-            for(int divA = 2; divA <= Math.sqrt(i); divA++) {
+            for(int divA = 2; divA * divA <= i; divA++) {
                 if(i % divA == 0) {
-                    int divB = i / divA;
-                    minStep = Math.min(minStep, lookUp.get(divB) + 1);
+                    minStep = Math.min(minStep, lookUp.get(i / divA) + 1);
                 }
             }
             	// Storing the result in lookUp table
@@ -44,7 +45,7 @@ public class Solution {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-    	BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+    	BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int q = Integer.parseInt(scanner.nextLine().trim());
 
