@@ -18,30 +18,36 @@ import java.util.regex.*;
 public class Solution {
 
     static long largestRectangle(int[] h) {
+    	/* Using stack to store the position of smaller heights then the current height
+    	 * If the height larger then previous heights in the stack -> next heights
+    	 * If NOT -> calculate the areas that this building closes.
+    	 */
     	
-    	int maxHeight = (int)Math.pow(10, 6);
-    	int[] array = new int[maxHeight + 1];
-    	Arrays.fill(array, -1);
-    	long maxArea = 0;
+    	Stack<Integer> stack = new Stack<>();
+    	long maxArea = 0;    	
     	
     	for(int i = 0; i < h.length; i++) {
-    		int height = h[i] + 1;
-    		while(height < maxHeight + 1 && array[height] != -1) {
-    			maxArea = Math.max(( i - array[height]) * height,  maxArea);
-    			array[height] = -1;
-    			height++;
+    		while(!stack.isEmpty() && h[stack.peek()] >= h[i]) {
+    			int prevHeight = stack.pop();
+    			if(!stack.isEmpty()) {
+    				maxArea = Math.max(maxArea, (long)(i - stack.peek() - 1) * h[prevHeight]);
+    			}
+    			else {
+    				maxArea = Math.max(maxArea, (long)(i) * h[prevHeight]);
+    			}
     		}
-    		height = h[i];
-    		while(height >= 0 && array[height] == -1) {
-    			array[height] = i;
-    			height--;
-    		}
+    		stack.push(i);    		
     	}
     	
-    	int height = 0;
-    	while(height < maxHeight + 1 && array[height] != -1) {
-			maxArea = Math.max((h.length - array[height]) * height,  maxArea);			
-			height++;
+    		// Finally check the open areas with a new building with zero height.
+    	while(!stack.isEmpty()) {
+			int prevHeight = stack.pop();
+			if(!stack.isEmpty()) {
+				maxArea = Math.max(maxArea, (long)(h.length - stack.peek() - 1) * h[prevHeight]);
+			}
+			else {
+				maxArea = Math.max(maxArea, (long)(h.length) * h[prevHeight]);
+			}
 		}
     	
     	return maxArea;
