@@ -1,0 +1,10 @@
+/* MySQL */
+
+SELECT n, 
+CASE
+    WHEN p IS NULL THEN "Root"
+    WHEN EXISTS (SELECT B2.p FROM BST AS B2 WHERE B1.n = B2.p) THEN "Inner"
+    ELSE "Leaf"
+END    
+FROM BST AS B1
+ORDER BY B1.n;
