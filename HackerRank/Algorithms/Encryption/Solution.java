@@ -23,30 +23,25 @@ public class Solution {
 
     static String encryption(String s) {
     	String sWOSpace = s.replace(" ", "");
-    	int rows = (int)Math.floor(Math.sqrt(sWOSpace.length()));
-    	int columns = rows;
-    	
     		// Define the minimal size matrix 
-    	if(rows * columns < sWOSpace.length()) {
-    		columns++;
-    		if(rows * columns < sWOSpace.length()) {
-    			rows++;
-    		}
-    	}
-    	
+    	double sqrt = Math.sqrt(sWOSpace.length());
+    	int rows = (int)Math.floor(sqrt);
+    	int columns = (int)Math.ceil(sqrt);
+    	    	
     	char[] charArray = sWOSpace.toCharArray();
     	StringBuilder result = new StringBuilder(sWOSpace.length() + columns);
     	
-    	for(int i = 0; i < rows * columns; i++) {
-    			// Add space after every column;
-    			// Special case is the first character
-    		if((i % rows == 0 && i > 0) ) {
+    	for(int i = 0; i < columns; i++) {
+    		int j = i;
+    		while(j < charArray.length) {
+    			result.append(charArray[j]);
+    			j += columns;
+    		}
+    		// Add space after every columns
+    		// Special case is the last column
+    		if(i != columns - 1) {
     			result.append(" ");
     		}
-    			// Add the proper char to result
-    			// Special case the last column, it maybe shorter.
-    		if((i % rows) * columns  + i / rows < charArray.length)
-    			result.append(charArray[(i % rows) * columns  + i / rows]);
     	}
     	
     	return result.toString();
